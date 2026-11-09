@@ -193,7 +193,8 @@ internal sealed class TrayApp : ApplicationContext
             "  Повторный двойной Shift возвращает как было.\n" +
             "• Отмена автопереключения двойным Shift добавляет слово в исключения.\n" +
             "• Щелчок по значку в трее — включить/выключить автопереключение.\n\n" +
-            "Файлы настроек: " + AppSettings.Dir,
+            "Файлы настроек: " + AppSettings.Dir + "\n\n" +
+            $"Версия {Application.ProductVersion.Split('+')[0]} · Издатель: Eugene Vitko · © 2026",
             "LangSwitcher — справка", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
     private void Quit()
