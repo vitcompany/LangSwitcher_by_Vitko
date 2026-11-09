@@ -4,3 +4,5 @@ publish/
 *.user
 .vs/
 .vscode/
+publish-standalone/
+release/
