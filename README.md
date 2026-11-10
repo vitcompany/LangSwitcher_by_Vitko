@@ -76,6 +76,14 @@ dotnet run
 powershell -STA -ExecutionPolicy Bypass -File tests\e2e\e2e.ps1
 ```
 
+## Иконка
+
+Иконка программы рисуется кодом (`src/IconPainter.cs`). Перегенерировать `src/app.ico` после изменений:
+
+```
+dotnet run --project tools\IconGen -- src\app.ico preview.png
+```
+
 ## Файлы настроек
 
 `%APPDATA%\LangSwitcher\`

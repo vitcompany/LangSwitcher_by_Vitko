@@ -10,6 +10,7 @@ internal sealed class ExceptionsForm : Form
     public ExceptionsForm(IEnumerable<string> words)
     {
         Text = "LangSwitcher — словарь исключений";
+        Icon = IconPainter.AppIcon;
         StartPosition = FormStartPosition.CenterScreen;
         AutoScaleMode = AutoScaleMode.Dpi;
         ClientSize = new Size(440, 480);
@@ -51,6 +52,7 @@ internal sealed class SettingsForm : Form
     public SettingsForm(AppSettings s, bool autostart)
     {
         Text = "LangSwitcher — настройки";
+        Icon = IconPainter.AppIcon;
         StartPosition = FormStartPosition.CenterScreen;
         AutoScaleMode = AutoScaleMode.Dpi;
         FormBorderStyle = FormBorderStyle.FixedDialog;

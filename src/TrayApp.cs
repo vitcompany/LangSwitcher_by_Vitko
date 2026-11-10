@@ -85,36 +85,12 @@ internal sealed class TrayApp : ApplicationContext
         using var bmp = new Bitmap(s, s);
         using (var g = Graphics.FromImage(bmp))
         {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
-            g.Clear(Color.Transparent);
-
             Color bg = !auto ? Color.FromArgb(128, 128, 128)
                 : lang == Lang.Ru ? Color.FromArgb(206, 52, 42)
                 : lang == Lang.En ? Color.FromArgb(30, 102, 208)
                 : Color.FromArgb(90, 90, 90);
-            float r = s / 4f;
-            using (var path = new GraphicsPath())
-            {
-                path.AddArc(0, 0, r * 2, r * 2, 180, 90);
-                path.AddArc(s - 1 - r * 2, 0, r * 2, r * 2, 270, 90);
-                path.AddArc(s - 1 - r * 2, s - 1 - r * 2, r * 2, r * 2, 0, 90);
-                path.AddArc(0, s - 1 - r * 2, r * 2, r * 2, 90, 90);
-                path.CloseFigure();
-                using var brush = new SolidBrush(bg);
-                g.FillPath(brush, path);
-            }
-
             string text = lang switch { Lang.En => "EN", Lang.Ru => "RU", _ => "··" };
-            using var font = new Font("Segoe UI", s * 0.5f, FontStyle.Bold, GraphicsUnit.Pixel);
-            using var fmt = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            g.DrawString(text, font, Brushes.White, new RectangleF(0, 0, s, s + 1), fmt);
-
-            if (!auto) // перечёркнуто — автопереключение выключено
-            {
-                using var pen = new Pen(Color.FromArgb(230, 255, 255, 255), Math.Max(1.5f, s / 12f));
-                g.DrawLine(pen, s * 0.15f, s * 0.85f, s * 0.85f, s * 0.15f);
-            }
+            IconPainter.DrawTray(g, s, text, bg, crossed: !auto); // перечёркнуто — автопереключение выключено
         }
         IntPtr h = bmp.GetHicon();
         var icon = (Icon)Icon.FromHandle(h).Clone();
